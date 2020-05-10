@@ -1,14 +1,13 @@
 // When User Clicks Start Button
-var timer = 0;
-var parent = document.querySelectorAll("main");
-var descrQuestion = document.querySelectorAll("desc");
-var timeEl = document.querySelectorAll("pgeTimer");
-var startBtnVar = document.querySelectorAll("StartBtn");
+var timer = 30;
+var parent = document.querySelector("#main");
+var descrQuestion = document.querySelector("#desc");
+var timeEl = document.querySelector("#pgeTimer");
+var startBtnVar = document.querySelector("#StartBtn");
 
 function StartQuiz() {
 	// console.log("Test Btn Strts Qz Func");
 	removeElement("startBtn");
-	descrQuestion[0].setAttribute();
 
 	//  a- Start the timer
 	//  b- Present the 1st question
@@ -63,3 +62,7 @@ function addElement(parentId, elementTag, elementId, html) {
 	newElement.innerHTML = html;
 	p.appendChild(newElement);
 }
+
+// the 7th 7:44  &  10:15
+//  8:20 Json
+// Class 5/4 7:10 & 9:29 &
