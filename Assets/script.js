@@ -1,6 +1,6 @@
 // When User Clicks Start Button
 var timer = 30;
-var parent = document.querySelector("#main");
+var parent = document.querySelector(".main");
 var descrQuestion = document.querySelector("#desc");
 var timeEl = document.querySelector("#pgeTimer");
 var startBtnVar = document.querySelector("#StartBtn");
@@ -66,3 +66,14 @@ function addElement(parentId, elementTag, elementId, html) {
 // the 7th 7:44  &  10:15
 //  8:20 Json
 // Class 5/4 7:10 & 9:29 &
+
+function timer() {
+	var sec = 30;
+	var timer = setInterval(function () {
+		document.getElementById("safeTimerDisplay").innerHTML = "00:" + sec;
+		sec--;
+		if (sec < 0) {
+			clearInterval(timer);
+		}
+	}, 1000);
+}
