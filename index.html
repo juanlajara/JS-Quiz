@@ -36,15 +36,35 @@
 		var listOfQEl = topEl.querySelector("#listOfQ");
 		var startBtnEl = topEl.querySelector("#startBtn");
 		var qChoices = ["1st Choice", "2nd Choice"];
+		var myQuestions = [
+			{
+				question: "Question 1",
+				answers: {
+					a: "3",
+					b: "5",
+					c: "115",
+				},
+				correctAnswer: "b",
+			},
+			{
+				question: "Question 2",
+				answers: {
+					a: "3",
+					b: "5",
+					c: "10",
+				},
+				correctAnswer: "c",
+			},
+		];
 
 		function StartQuiz() {
-			// drop the Start Button
-
+			// drop the Start Button & Heading
 			startBtnEl.remove();
+			// headingEl.remove();
 			//  a- Start the timer
 			//  b- Present the 1st question
-			descQEl.textContent = "Question 1";
-			for (var i = 0; i < qChoices.length; i++) {
+			descQEl.textContent = myQuestions[0].question;
+			for (i = 0; i < qChoices.length; i++) {
 				var node = document.createElement("LI"); // Create a <li> node
 				var textnode = document.createTextNode(qChoices[i]); // Create a text node
 				node.appendChild(textnode); // Append the text to <li>
