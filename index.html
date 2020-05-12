@@ -65,10 +65,10 @@
 			//  b- Present the 1st question
 			descQEl.textContent = myQuestions[0].question;
 			for (i = 0; i < qChoices.length; i++) {
-				var node = document.createElement("LI"); // Create a <li> node
-				var textnode = document.createTextNode(qChoices[i]); // Create a text node
-				node.appendChild(textnode); // Append the text to <li>
-				listOfQEl.appendChild(node); // Append <li> to <ul> with id="myList"
+				var tempEL = document.createElement("button"); // Create a <li> node
+				var tempTXT = document.createTextNode(qChoices[i]); // Create a text node
+				tempEL.appendChild(tempTXT); // Append the text to <li>
+				listOfQEl.appendChild(tempEL); // Append <li> to <ul> with id="myList"
 			}
 
 			//       List of the options to question 1
