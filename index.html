@@ -23,7 +23,7 @@
 	<body class="container mt-5 text-center">
 		<h1 id="heading">Javascript Coding Quiz</h1>
 		<h2 id="descQuestion">Description</h2>
-		<il id="listOfQ"></il>
+		<ul id="listOfQ"></ul>
 		<h3 id="pgeTimer"></h3>
 		<button id="startBtn" type="button" onclick="StartQuiz()">Start</button>
 	</body>
@@ -33,15 +33,24 @@
 		var headingEl = topEl.querySelector("#heading");
 		var descQEl = topEl.querySelector("#descQuestion");
 		var pgeTimerEl = topEl.querySelector("#pgeTimer");
+		var listOfQEl = topEl.querySelector("#listOfQ");
 		var startBtnEl = topEl.querySelector("#startBtn");
+		var qChoices = ["1st Choice", "2nd Choice"];
 
 		function StartQuiz() {
-			// console.log("Test Btn Strts Qz Func");
-			startBtnEl.remove();
-			descQEl.textContent = "Question 1";
+			// drop the Start Button
 
+			startBtnEl.remove();
 			//  a- Start the timer
 			//  b- Present the 1st question
+			descQEl.textContent = "Question 1";
+			for (var i = 0; i < qChoices.length; i++) {
+				var node = document.createElement("LI"); // Create a <li> node
+				var textnode = document.createTextNode(qChoices[i]); // Create a text node
+				node.appendChild(textnode); // Append the text to <li>
+				listOfQEl.appendChild(node); // Append <li> to <ul> with id="myList"
+			}
+
 			//       List of the options to question 1
 			//          1a-Onclick for the right answer - Next Question()
 			//          1b-Onclick wrong answer - SubtractTime()
@@ -79,20 +88,6 @@
 
 		//   localStorage.setItem("count", count);
 		// });
-		function removeElement(elementId) {
-			// Removes an element from the document
-			var element = document.getElementById(elementId);
-			element.parentNode.removeChild(element);
-		}
-
-		function addElement(parentId, elementTag, elementId, html) {
-			// Adds an element to the document
-			var p = document.getElementById(parentId);
-			var newElement = document.createElement(elementTag);
-			newElement.setAttribute("id", elementId);
-			newElement.innerHTML = html;
-			p.appendChild(newElement);
-		}
 
 		// the 7th 7:44  &  10:15
 		//  8:20 Json
