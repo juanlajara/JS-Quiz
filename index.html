@@ -35,7 +35,6 @@
 		var pgeTimerEl = topEl.querySelector("#pgeTimer");
 		var listOfQEl = topEl.querySelector("#listOfQ");
 		var startBtnEl = topEl.querySelector("#startBtn");
-		var qChoices = ["1st Choice", "2nd Choice", "3rd Choice"];
 		var myQuestions = [
 			{
 				question: "Question 1",
@@ -56,7 +55,7 @@
 			//  a- Start the timer
 			//  b- Present the 1st question
 			descQEl.textContent = myQuestions[0].question;
-			for (i = 0; i < qChoices.length; i++) {
+			for (i = 0; i < myQuestions[0].answers.length; i++) {
 				var tempEL = document.createElement("button"); // Create a <li> node
 				var tempTXT = document.createTextNode(myQuestions[0].answers[i]); // Create a text node
 				tempEL.appendChild(tempTXT); // Append the text to <li>
