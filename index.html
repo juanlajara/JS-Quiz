@@ -58,7 +58,7 @@
 			descQEl.textContent = myQuestions[0].question;
 			for (i = 0; i < qChoices.length; i++) {
 				var tempEL = document.createElement("button"); // Create a <li> node
-				var tempTXT = document.createTextNode(qChoices[i]); // Create a text node
+				var tempTXT = document.createTextNode(myQuestions[0].answers[i]); // Create a text node
 				tempEL.appendChild(tempTXT); // Append the text to <li>
 				listOfQEl.appendChild(tempEL); // Append <li> to <ul> with id="myList"
 			}
