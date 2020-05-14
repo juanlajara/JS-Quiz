@@ -24,7 +24,7 @@
 		<h1 id="heading">Javascript Coding Quiz</h1>
 		<h2 id="descQuestion">Description</h2>
 		<ul id="listOfQ"></ul>
-		<h3 id="pgeTimer"></h3>
+		<h6 id="pgeTimer"></h6>
 		<button id="startBtn" type="button" onclick="StartQuiz()">Start</button>
 	</body>
 	<script type="text/javascript">
@@ -47,19 +47,26 @@
 				correctAnswer: "Ans2",
 			},
 		];
-
+		var tempEL;
 		function StartQuiz() {
 			// drop the Start Button & Heading
+			timer();
 			startBtnEl.remove();
 			// headingEl.remove();
 			//  a- Start the timer
+
 			//  b- Present the 1st question
 			descQEl.textContent = myQuestions[0].question;
 			for (i = 0; i < myQuestions[0].answers.length; i++) {
 				var tempEL = document.createElement("button"); // Create a <li> node
+				// tempEL.addEventListener("click", console.log("next"));
 				var tempTXT = document.createTextNode(myQuestions[0].answers[i]); // Create a text node
 				tempEL.appendChild(tempTXT); // Append the text to <li>
-				listOfQEl.appendChild(tempEL); // Append <li> to <ul> with id="myList"
+
+				listOfQEl.appendChild(tempEL);
+				// listOfQEl.children[i].addEventListener("click", console.log("next"));
+
+				// tempEL.onclick = console.log("Next Question"); // Append <li> to <ul> with id="myList"
 			}
 
 			//       List of the options to question 1
@@ -105,9 +112,9 @@
 		// Class 5/4 7:10 & 9:29 &
 
 		function timer() {
-			var sec = 30;
+			var sec = 70;
 			var timer = setInterval(function () {
-				document.getElementById("safeTimerDisplay").innerHTML = "00:" + sec;
+				pgeTimerEl.innerHTML = sec + " Seconds Left";
 				sec--;
 				if (sec < 0) {
 					clearInterval(timer);
