@@ -29,6 +29,7 @@
 	</body>
 	<script type="text/javascript">
 		var timerVal = 30;
+		var currentQ = 0;
 		var topEl = document.body;
 		var headingEl = topEl.querySelector("#heading");
 		var descQEl = topEl.querySelector("#descQuestion");
@@ -51,24 +52,33 @@
 		function StartQuiz() {
 			// drop the Start Button & Heading
 			timer();
+			function timer() {
+				var sec = 30;
+				var timer = setInterval(function () {
+					pgeTimerEl.innerHTML = sec + " Seconds Left";
+					sec--;
+					if (sec < 0) {
+						clearInterval(timer);
+					}
+				}, 1000);
+			}
 			startBtnEl.remove();
 			// headingEl.remove();
 			//  a- Start the timer
 
 			//  b- Present the 1st question
-			descQEl.textContent = myQuestions[0].question;
-			for (i = 0; i < myQuestions[0].answers.length; i++) {
+			descQEl.textContent = myQuestions[currentQ].question;
+			for (i = 0; i < myQuestions[currentQ].answers.length; i++) {
 				var tempEL = document.createElement("button"); // Create a <li> node
 				// tempEL.addEventListener("click", console.log("next"));
-				var tempTXT = document.createTextNode(myQuestions[0].answers[i]); // Create a text node
+				var tempTXT = document.createTextNode(myQuestions[currentQ].answers[i]); // Create a text node
 				tempEL.appendChild(tempTXT); // Append the text to <li>
-
 				listOfQEl.appendChild(tempEL);
 				// listOfQEl.children[i].addEventListener("click", console.log("next"));
 
 				// tempEL.onclick = console.log("Next Question"); // Append <li> to <ul> with id="myList"
 			}
-
+			// 1st button element click function NextQuestion()
 			//       List of the options to question 1
 			//          1a-Onclick for the right answer - Next Question()
 			//          1b-Onclick wrong answer - SubtractTime()
@@ -110,16 +120,5 @@
 		// the 7th 7:44  &  10:15
 		//  8:20 Json
 		// Class 5/4 7:10 & 9:29 &
-
-		function timer() {
-			var sec = 30;
-			var timer = setInterval(function () {
-				pgeTimerEl.innerHTML = sec + " Seconds Left";
-				sec--;
-				if (sec < 0) {
-					clearInterval(timer);
-				}
-			}, 1000);
-		}
 	</script>
 </html>
