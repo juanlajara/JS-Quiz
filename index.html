@@ -22,7 +22,10 @@
 	</head>
 	<body class="container mt-5 text-center">
 		<h1 id="heading">Javascript Coding Quiz</h1>
-		<h3 id="desc">You will have 60 sec to complete this quiz.</h3>
+		<h3 id="desc">
+			You will have 60 secs to complete this quiz.Each Incorrect answer will
+			reduce the time by 10 secs
+		</h3>
 		<button
 			id="startBtn"
 			type="button"
@@ -120,7 +123,7 @@
 					currentpoints++;
 					scoreEl.innerHTML = " Current Point(s) : " + currentpoints;
 				} else {
-					timeleft -= 30;
+					timeleft -= 10;
 				}
 
 				currentQ++;
