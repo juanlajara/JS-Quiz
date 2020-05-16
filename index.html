@@ -94,20 +94,30 @@
 
 		function nextQuestion() {
 			currentQ++;
-			for (i = 0; i < myQuestions[currentQ].answers.length; i++) {
-				questionEl.innerHTML = myQuestions[currentQ].question;
-				var tempBtnEl = document.createElement("button");
-				var tempBtnTxt = document.createTextNode(
-					myQuestions[currentQ].answers[i]
-				);
-				tempBtnEl.appendChild(tempBtnTxt);
-				// Add Attributes to Button
-				tempBtnEl.setAttribute("value", i);
-				tempBtnEl.setAttribute("class", "mr-2 btn btn-primary");
-				// var textnode = document.createTextNode("Water");
-				var item = document.querySelectorAll("button")[i];
-				// Replace the first child node of <ul> with the newly created text node
-				item.replaceChild(tempBtnTxt, item.childNodes[0]);
+
+			if (myQuestions[currentQ] === undefined) {
+				console.log("done placeholder");
+				questionEl.remove();
+
+				topEl.querySelectorAll("button").forEach((element) => {
+					element.remove();
+				});
+			} else {
+				for (i = 0; i < myQuestions[currentQ].answers.length; i++) {
+					questionEl.innerHTML = myQuestions[currentQ].question;
+					var tempBtnEl = document.createElement("button");
+					var tempBtnTxt = document.createTextNode(
+						myQuestions[currentQ].answers[i]
+					);
+					tempBtnEl.appendChild(tempBtnTxt);
+					tempBtnEl.setAttribute("value", i);
+					tempBtnEl.setAttribute("class", "mr-2 btn btn-primary");
+					var item = document.querySelectorAll("button")[i];
+					item.replaceChild(tempBtnTxt, item.childNodes[0]);
+					var allBtnEl = topEl
+						.querySelectorAll("button")
+						[i].addEventListener("click", nextQuestion);
+				}
 			}
 		}
 		//  d-Quiz Ends when Timer = 0 or All Questions are Answered
