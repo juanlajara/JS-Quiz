@@ -34,11 +34,11 @@
 		>
 			Start
 		</button>
-		<h4 id="Question" class="container"></h4>
+		<h3 id="Question" class="container"></h3>
 		<div id="listOfAnwrs" class="col"></div>
 		<aside>
-			<h6 id="pgeTimer"></h6>
-			<p id="Score"></p>
+			<h5 id="pgeTimer"></h5>
+			<h6 id="Score"></h6>
 		</aside>
 
 		<script>
@@ -158,14 +158,16 @@
 				}
 			}
 
-			function endQuiz() {
-				questionEl.remove();
-				pgeTimerEl.remove();
-				topEl.querySelectorAll("button").forEach((element) => {
-					element.remove();
-				});
-				scoreEl.innerHTML = " Total Point(s) : " + currentpoints;
-				scoreEl.setAttribute("style", "font-size:25px");
+			function timer() {
+				timeleft = initimerVal;
+				var timer = setInterval(function () {
+					pgeTimerEl.innerHTML = timeleft + " Seconds Left";
+					timeleft--;
+					if (timeleft < 0) {
+						clearInterval(timer);
+						endQuiz();
+					}
+				}, 1000);
 			}
 
 			function endQuiz() {
