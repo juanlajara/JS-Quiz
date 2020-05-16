@@ -31,8 +31,8 @@
 		>
 			Start
 		</button>
-		<h4 id="Question"></h4>
-		<p id="listOfQ" class="justify-content-center"></p>
+		<h4 id="Question" class="container"></h4>
+		<div id="listOfAnwrs" class="col"></div>
 		<aside>
 			<h6 id="pgeTimer"></h6>
 			<p id="Score"></p>
@@ -48,7 +48,7 @@
 			var scoreEl = topEl.querySelector("#Score");
 			var questionEl = topEl.querySelector("#Question");
 			var pgeTimerEl = topEl.querySelector("#pgeTimer");
-			var listOfQEl = topEl.querySelector("#listOfQ");
+			var listOfAnwrsEl = topEl.querySelector("#listOfAnwrs");
 			var startBtnEl = topEl.querySelector("#startBtn");
 			var myQuestions = [
 				{
@@ -84,21 +84,18 @@
 					tempBtnEl.appendChild(tempBtnTxt);
 					// Add Attributes to Button
 					tempBtnEl.setAttribute("value", i);
-					tempBtnEl.setAttribute("class", "mr-2 btn btn-primary");
-					listOfQEl.appendChild(tempBtnEl);
-
-					// listOfQEl.children[i].addEventListener("click", console.log("next"));
+					tempBtnEl.setAttribute(
+						"class",
+						"list-group-item list-group-item-info mb-2 container mt-2 text-center "
+					);
+					listOfAnwrsEl.appendChild(tempBtnEl);
 					var allBtnEl = topEl
 						.querySelectorAll("button")
 						[i].addEventListener("click", nextQuestion);
-					// tempBtnEl.onclick = console.log("Next Question"); // Append <li> to <ul> with id="myList"
 				}
 
 				// Start The Timer
 				timer();
-
-				//          1a-Onclick for the right answer - Next Question()
-				//          1b-Onclick wrong answer - SubtractTime() & Next Question()
 			}
 
 			function nextQuestion() {
@@ -109,15 +106,9 @@
 					currentpoints++;
 					scoreEl.innerHTML = " Current Point(s) : " + currentpoints;
 				}
-
 				currentQ++;
-
 				if (myQuestions[currentQ] === undefined) {
 					endQuiz();
-
-					// topEl.querySelectorAll("button").forEach((element) => {
-					// 	element.remove();
-					// });
 				} else {
 					for (i = 0; i < myQuestions[currentQ].answers.length; i++) {
 						questionEl.innerHTML = myQuestions[currentQ].question;
@@ -127,7 +118,10 @@
 						);
 						tempBtnEl.appendChild(tempBtnTxt);
 						tempBtnEl.setAttribute("value", i);
-						tempBtnEl.setAttribute("class", "mr-2 btn btn-primary");
+						tempBtnEl.setAttribute(
+							"class",
+							"list-group-item list-group-item-info mb-2 container mt-2 text-center"
+						);
 						var item = document.querySelectorAll("button")[i];
 						item.replaceChild(tempBtnTxt, item.childNodes[0]);
 						var allBtnEl = topEl
