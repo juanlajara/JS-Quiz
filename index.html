@@ -40,7 +40,8 @@
 
 		<script>
 			// #region Variables
-			var timerVal = 15;
+			var initimerVal = 60;
+			var timeleft = 0;
 			var currentpoints = 0;
 			var currentQ = 0;
 			var myQuestions = [
@@ -109,8 +110,12 @@
 				) {
 					currentpoints++;
 					scoreEl.innerHTML = " Current Point(s) : " + currentpoints;
+				} else {
+					timeleft -= 3;
 				}
+
 				currentQ++;
+
 				if (myQuestions[currentQ] === undefined) {
 					endQuiz();
 				} else {
@@ -136,11 +141,11 @@
 			}
 
 			function timer() {
-				timerVal = timerVal;
+				timeleft = initimerVal;
 				var timer = setInterval(function () {
-					pgeTimerEl.innerHTML = timerVal + " Seconds Left";
-					timerVal--;
-					if (timerVal < 0) {
+					pgeTimerEl.innerHTML = timeleft + " Seconds Left";
+					timeleft--;
+					if (timeleft < 0) {
 						clearInterval(timer);
 						endQuiz();
 					}
