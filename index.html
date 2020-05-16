@@ -34,75 +34,38 @@
 		>
 			Start
 		</button>
-	</body>
-	<script type="text/javascript">
-		var timerVal = 30;
-		var currentQ = 0;
-		var topEl = document.body;
-		var headingEl = topEl.querySelector("#heading");
-		var descQEl = topEl.querySelector("#desc");
-		var questionEl = topEl.querySelector("#Question");
-		var pgeTimerEl = topEl.querySelector("#pgeTimer");
-		var listOfQEl = topEl.querySelector("#listOfQ");
-		var startBtnEl = topEl.querySelector("#startBtn");
-		var myQuestions = [
-			{
-				question: "Question 1",
-				answers: ["Q1An1", "Q1An2", "Q1An3"],
-				correctAnswer: 1,
-			},
-			{
-				question: "Question 2",
-				answers: ["Q2An1", "Q2An2", "Q2An3"],
-				correctAnswer: 2,
-			},
-		];
 
-		function StartQuiz() {
-			// Remove Buttons & Description
-			startBtnEl.remove();
-			descQEl.remove();
-			//  a- Start the timer
+		<script>
+			var timerVal = 30;
+			var currentQ = 0;
+			var topEl = document.body;
+			var headingEl = topEl.querySelector("#heading");
+			var descQEl = topEl.querySelector("#desc");
+			var questionEl = topEl.querySelector("#Question");
+			var pgeTimerEl = topEl.querySelector("#pgeTimer");
+			var listOfQEl = topEl.querySelector("#listOfQ");
+			var startBtnEl = topEl.querySelector("#startBtn");
+			var myQuestions = [
+				{
+					question: "Question 1",
+					answers: ["Q1An1", "Q1An2", "Q1An3"],
+					correctAnswer: 1,
+				},
+				{
+					question: "Question 2",
+					answers: ["Q2An1", "Q2An2", "Q2An3"],
+					correctAnswer: 2,
+				},
+			];
 
-			//  b- Present the 1st question
-			//       List of the options to question 1
-			for (i = 0; i < myQuestions[currentQ].answers.length; i++) {
-				questionEl.innerHTML = myQuestions[currentQ].question;
-				var tempBtnEl = document.createElement("button");
-				var tempBtnTxt = document.createTextNode(
-					myQuestions[currentQ].answers[i]
-				);
-				tempBtnEl.appendChild(tempBtnTxt);
-				// Add Attributes to Button
-				tempBtnEl.setAttribute("value", i);
-				tempBtnEl.setAttribute("class", "mr-2 btn btn-primary");
-				listOfQEl.appendChild(tempBtnEl);
+			function StartQuiz() {
+				// Remove Buttons & Description
+				startBtnEl.remove();
+				descQEl.remove();
+				//  a- Start the timer
 
-				// listOfQEl.children[i].addEventListener("click", console.log("next"));
-				var allBtnEl = topEl
-					.querySelectorAll("button")
-					[i].addEventListener("click", nextQuestion);
-				// tempBtnEl.onclick = console.log("Next Question"); // Append <li> to <ul> with id="myList"
-			}
-
-			// Start The Timer
-			timer();
-
-			//          1a-Onclick for the right answer - Next Question()
-			//          1b-Onclick wrong answer - SubtractTime() & Next Question()
-		}
-
-		function nextQuestion() {
-			currentQ++;
-
-			if (myQuestions[currentQ] === undefined) {
-				console.log("done placeholder");
-				questionEl.remove();
-
-				topEl.querySelectorAll("button").forEach((element) => {
-					element.remove();
-				});
-			} else {
+				//  b- Present the 1st question
+				//       List of the options to question 1
 				for (i = 0; i < myQuestions[currentQ].answers.length; i++) {
 					questionEl.innerHTML = myQuestions[currentQ].question;
 					var tempBtnEl = document.createElement("button");
@@ -110,53 +73,91 @@
 						myQuestions[currentQ].answers[i]
 					);
 					tempBtnEl.appendChild(tempBtnTxt);
+					// Add Attributes to Button
 					tempBtnEl.setAttribute("value", i);
 					tempBtnEl.setAttribute("class", "mr-2 btn btn-primary");
-					var item = document.querySelectorAll("button")[i];
-					item.replaceChild(tempBtnTxt, item.childNodes[0]);
+					listOfQEl.appendChild(tempBtnEl);
+
+					// listOfQEl.children[i].addEventListener("click", console.log("next"));
 					var allBtnEl = topEl
 						.querySelectorAll("button")
 						[i].addEventListener("click", nextQuestion);
+					// tempBtnEl.onclick = console.log("Next Question"); // Append <li> to <ul> with id="myList"
+				}
+
+				// Start The Timer
+				timer();
+
+				//          1a-Onclick for the right answer - Next Question()
+				//          1b-Onclick wrong answer - SubtractTime() & Next Question()
+			}
+
+			function nextQuestion() {
+				currentQ++;
+
+				if (myQuestions[currentQ] === undefined) {
+					console.log("done placeholder");
+					questionEl.remove();
+
+					topEl.querySelectorAll("button").forEach((element) => {
+						element.remove();
+					});
+				} else {
+					for (i = 0; i < myQuestions[currentQ].answers.length; i++) {
+						questionEl.innerHTML = myQuestions[currentQ].question;
+						var tempBtnEl = document.createElement("button");
+						var tempBtnTxt = document.createTextNode(
+							myQuestions[currentQ].answers[i]
+						);
+						tempBtnEl.appendChild(tempBtnTxt);
+						tempBtnEl.setAttribute("value", i);
+						tempBtnEl.setAttribute("class", "mr-2 btn btn-primary");
+						var item = document.querySelectorAll("button")[i];
+						item.replaceChild(tempBtnTxt, item.childNodes[0]);
+						var allBtnEl = topEl
+							.querySelectorAll("button")
+							[i].addEventListener("click", nextQuestion);
+					}
 				}
 			}
-		}
-		//  d-Quiz Ends when Timer = 0 or All Questions are Answered
-		//  e-present user the option to add Initials with current score
+			//  d-Quiz Ends when Timer = 0 or All Questions are Answered
+			//  e-present user the option to add Initials with current score
 
-		// var counter = document.querySelector("#counter");
-		// var addButton = document.querySelector("#add");
-		// var subtractButton = document.querySelector("#subtract");
+			// var counter = document.querySelector("#counter");
+			// var addButton = document.querySelector("#add");
+			// var subtractButton = document.querySelector("#subtract");
 
-		// var count = 0;
-		// counter.textContent = count;
-		// if (localStorage.getItem("count")) {
-		//   count = localStorage.getItem("count");
-		//   counter.textContent = count;
-		// }
+			// var count = 0;
+			// counter.textContent = count;
+			// if (localStorage.getItem("count")) {
+			//   count = localStorage.getItem("count");
+			//   counter.textContent = count;
+			// }
 
-		// addButton.addEventListener("click", function () {
-		//   count++;
-		//   counter.textContent = count;
+			// addButton.addEventListener("click", function () {
+			//   count++;
+			//   counter.textContent = count;
 
-		//   localStorage.setItem("count", count);
-		// });
+			//   localStorage.setItem("count", count);
+			// });
 
-		// subtractButton.addEventListener("click", function () {
-		//   count--;
-		//   counter.textContent = count;
+			// subtractButton.addEventListener("click", function () {
+			//   count--;
+			//   counter.textContent = count;
 
-		//   localStorage.setItem("count", count);
-		// });
+			//   localStorage.setItem("count", count);
+			// });
 
-		function timer() {
-			var timerVal = 30;
-			var timer = setInterval(function () {
-				pgeTimerEl.innerHTML = timerVal + " Seconds Left";
-				timerVal--;
-				if (timerVal < 0) {
-					clearInterval(timer);
-				}
-			}, 1000);
-		}
-	</script>
+			function timer() {
+				var timerVal = 30;
+				var timer = setInterval(function () {
+					pgeTimerEl.innerHTML = timerVal + " Seconds Left";
+					timerVal--;
+					if (timerVal < 0) {
+						clearInterval(timer);
+					}
+				}, 1000);
+			}
+		</script>
+	</body>
 </html>
