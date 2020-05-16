@@ -117,22 +117,25 @@
 			}
 
 			function nextQuestion() {
+				// If the answer selected is correct add points
 				if (
 					parseInt(this.getAttribute("value")) ===
 					myQuestions[currentQ].correctAnswer
 				) {
 					currentpoints++;
 					scoreEl.innerHTML = " Current Point(s) : " + currentpoints;
-				} else {
+				}
+				// If the answer selected is incorrect deduct time
+				else {
 					timeleft -= wrongAnsPenalty;
 				}
-
+				// Next Question
 				currentQ++;
 				// If done with the Questions
 				if (myQuestions[currentQ] === undefined) {
 					endQuiz();
 				}
-				// If not next Question
+				// If not next Question and Answers
 				else {
 					topEl.querySelectorAll("button").forEach((element) => {
 						element.remove();
