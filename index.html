@@ -59,6 +59,12 @@
 					],
 					correctAnswer: 1,
 				},
+				{
+					question:
+						"The external JavaScript file must contain the <script> tag.",
+					answers: ["False", "True"],
+					correctAnswer: 0,
+				},
 			];
 			// #endregion
 			// #region Element Variables
@@ -111,7 +117,7 @@
 					currentpoints++;
 					scoreEl.innerHTML = " Current Point(s) : " + currentpoints;
 				} else {
-					timeleft -= 3;
+					timeleft -= 30;
 				}
 
 				currentQ++;
@@ -119,8 +125,12 @@
 				if (myQuestions[currentQ] === undefined) {
 					endQuiz();
 				} else {
+					topEl.querySelectorAll("button").forEach((element) => {
+						element.remove();
+					});
 					for (i = 0; i < myQuestions[currentQ].answers.length; i++) {
 						questionEl.innerHTML = myQuestions[currentQ].question;
+
 						var tempBtnEl = document.createElement("button");
 						var tempBtnTxt = document.createTextNode(
 							myQuestions[currentQ].answers[i]
@@ -131,8 +141,9 @@
 							"class",
 							"list-group-item list-group-item-info mb-2 container mt-2 text-center"
 						);
-						var item = document.querySelectorAll("button")[i];
-						item.replaceChild(tempBtnTxt, item.childNodes[0]);
+						// var item = document.querySelectorAll("button")[i];
+
+						listOfAnwrsEl.appendChild(tempBtnEl);
 						var allBtnEl = topEl
 							.querySelectorAll("button")
 							[i].addEventListener("click", nextQuestion);
