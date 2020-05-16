@@ -24,6 +24,7 @@
 		<h1 id="heading">Javascript Coding Quiz</h1>
 		<h2 id="desc">Description</h2>
 		<h2 id="Question"></h2>
+		<div id="Score"></div>
 		<p id="listOfQ" class="justify-content-center"></p>
 		<h6 id="pgeTimer"></h6>
 		<button
@@ -38,9 +39,11 @@
 		<script>
 			var timerVal = 5;
 			var currentQ = 0;
+			var currentpoints = 0;
 			var topEl = document.body;
 			var headingEl = topEl.querySelector("#heading");
 			var descQEl = topEl.querySelector("#desc");
+			var scoreEl = topEl.querySelector("#Score");
 			var questionEl = topEl.querySelector("#Question");
 			var pgeTimerEl = topEl.querySelector("#pgeTimer");
 			var listOfQEl = topEl.querySelector("#listOfQ");
@@ -49,12 +52,12 @@
 				{
 					question: "Question 1",
 					answers: ["Q1An1", "Q1An2", "Q1An3"],
-					correctAnswer: 1,
+					correctAnswer: 0,
 				},
 				{
 					question: "Question 2",
 					answers: ["Q2An1", "Q2An2", "Q2An3"],
-					correctAnswer: 2,
+					correctAnswer: 1,
 				},
 			];
 
@@ -63,7 +66,7 @@
 				startBtnEl.remove();
 				descQEl.remove();
 				//  a- Start the timer
-
+				scoreEl.innerHTML = currentpoints + " Current Point(s)";
 				//  b- Present the 1st question
 				//       List of the options to question 1
 				for (i = 0; i < myQuestions[currentQ].answers.length; i++) {
@@ -94,8 +97,11 @@
 
 			function nextQuestion() {
 				if (
-					this.getAttribute("value") === myQuestions[currentQ].correctAnswer
+					parseInt(this.getAttribute("value")) ===
+					myQuestions[currentQ].correctAnswer
 				) {
+					currentpoints++;
+					scoreEl.innerHTML = currentpoints + " Current Point(s)";
 				}
 
 				currentQ++;
