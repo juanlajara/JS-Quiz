@@ -22,73 +22,73 @@
 	</head>
 	<body class="container mt-5 text-center">
 		<h1 id="heading">Javascript Coding Quiz</h1>
-		<h2 id="descQuestion">Description</h2>
-		<ul id="listOfQ"></ul>
+		<h2 id="desc">Description</h2>
+		<h2 id="Question"></h2>
+		<p id="listOfQ" class="justify-content-center"></p>
 		<h6 id="pgeTimer"></h6>
-		<button id="startBtn" type="button" onclick="StartQuiz()">Start</button>
+		<button
+			id="startBtn"
+			type="button"
+			class="btn btn-primary"
+			onclick="StartQuiz()"
+		>
+			Start
+		</button>
 	</body>
 	<script type="text/javascript">
 		var timerVal = 30;
 		var currentQ = 0;
 		var topEl = document.body;
 		var headingEl = topEl.querySelector("#heading");
-		var descQEl = topEl.querySelector("#descQuestion");
+		var descQEl = topEl.querySelector("#desc");
+		var questionEl = topEl.querySelector("#Question");
 		var pgeTimerEl = topEl.querySelector("#pgeTimer");
 		var listOfQEl = topEl.querySelector("#listOfQ");
 		var startBtnEl = topEl.querySelector("#startBtn");
 		var myQuestions = [
 			{
 				question: "Question 1",
-				answers: ["Ans1", "Ans2", "Ans3"],
-				correctAnswer: ["Ans1"],
+				answers: ["Q1An1", "Q1An2", "Q1An3"],
+				correctAnswer: 1,
 			},
 			{
 				question: "Question 2",
-				answers: ["Ans1", "Ans2", "Ans3"],
-				correctAnswer: "Ans2",
+				answers: ["Q2An1", "Q2An2", "Q2An3"],
+				correctAnswer: 2,
 			},
 		];
-		var tempEL;
+
 		function StartQuiz() {
-			// drop the Start Button & Heading
-			timer();
-			function timer() {
-				var sec = 30;
-				var timer = setInterval(function () {
-					pgeTimerEl.innerHTML = sec + " Seconds Left";
-					sec--;
-					if (sec < 0) {
-						clearInterval(timer);
-					}
-				}, 1000);
-			}
+			// Remove Buttons & Description
 			startBtnEl.remove();
-			// headingEl.remove();
+			descQEl.remove();
 			//  a- Start the timer
 
 			//  b- Present the 1st question
-			descQEl.textContent = myQuestions[currentQ].question;
+			//       List of the options to question 1
 			for (i = 0; i < myQuestions[currentQ].answers.length; i++) {
-				var tempEL = document.createElement("button"); // Create a <li> node
-				// tempEL.addEventListener("click", console.log("next"));
-				var tempTXT = document.createTextNode(myQuestions[currentQ].answers[i]); // Create a text node
-				tempEL.appendChild(tempTXT); // Append the text to <li>
-				listOfQEl.appendChild(tempEL);
+				questionEl.innerHTML = myQuestions[currentQ].question;
+				var tempBtnEl = document.createElement("button");
+				var tempBtnTxt = document.createTextNode(
+					myQuestions[currentQ].answers[i]
+				);
+				tempBtnEl.appendChild(tempBtnTxt);
+				// Add Attributes to Button
+				tempBtnEl.setAttribute("value", i);
+				tempBtnEl.setAttribute("class", "mr-2 btn btn-primary");
+				listOfQEl.appendChild(tempBtnEl);
+
 				// listOfQEl.children[i].addEventListener("click", console.log("next"));
 
-				// tempEL.onclick = console.log("Next Question"); // Append <li> to <ul> with id="myList"
+				// tempBtnEl.onclick = console.log("Next Question"); // Append <li> to <ul> with id="myList"
 			}
-			// 1st button element click function NextQuestion()
-			//       List of the options to question 1
+			topEl.querySelectorAll(".btn").addEventListener("click", nextQuestion());
+			// Start The Timer
+			timer();
+
 			//          1a-Onclick for the right answer - Next Question()
-			//          1b-Onclick wrong answer - SubtractTime()
+			//          1b-Onclick wrong answer - SubtractTime() & Next Question()
 		}
-		//  a- Start the timer
-		//  b- Present the 1st question
-		//       List of the options to question 1
-		//          1a-Onclick for the right answer - Next Question()
-		//          1b-Onclick wrong answer - SubtractTime()
-		//  c-Next Question Repeat b()
 		//  d-Quiz Ends when Timer = 0 or All Questions are Answered
 		//  e-present user the option to add Initials with current score
 
@@ -117,8 +117,15 @@
 		//   localStorage.setItem("count", count);
 		// });
 
-		// the 7th 7:44  &  10:15
-		//  8:20 Json
-		// Class 5/4 7:10 & 9:29 &
+		function timer() {
+			var timerVal = 30;
+			var timer = setInterval(function () {
+				pgeTimerEl.innerHTML = timerVal + " Seconds Left";
+				timerVal--;
+				if (timerVal < 0) {
+					clearInterval(timer);
+				}
+			}, 1000);
+		}
 	</script>
 </html>
