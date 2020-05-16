@@ -36,7 +36,7 @@
 		</button>
 
 		<script>
-			var timerVal = 30;
+			var timerVal = 5;
 			var currentQ = 0;
 			var topEl = document.body;
 			var headingEl = topEl.querySelector("#heading");
@@ -93,10 +93,14 @@
 			}
 
 			function nextQuestion() {
+				if (
+					this.getAttribute("value") === myQuestions[currentQ].correctAnswer
+				) {
+				}
+
 				currentQ++;
 
 				if (myQuestions[currentQ] === undefined) {
-					console.log("done placeholder");
 					questionEl.remove();
 
 					topEl.querySelectorAll("button").forEach((element) => {
@@ -149,7 +153,7 @@
 			// });
 
 			function timer() {
-				var timerVal = 30;
+				timerVal = 30;
 				var timer = setInterval(function () {
 					pgeTimerEl.innerHTML = timerVal + " Seconds Left";
 					timerVal--;
@@ -158,6 +162,8 @@
 					}
 				}, 1000);
 			}
+
+			function endQuiz() {}
 		</script>
 	</body>
 </html>
