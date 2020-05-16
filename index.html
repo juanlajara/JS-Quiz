@@ -24,7 +24,7 @@
 		<h1 id="heading">Javascript Coding Quiz</h1>
 		<h2 id="desc">Description</h2>
 		<h2 id="Question"></h2>
-		<div id="Score"></div>
+		<p id="Score"></p>
 		<p id="listOfQ" class="justify-content-center"></p>
 		<h6 id="pgeTimer"></h6>
 		<button
@@ -66,7 +66,7 @@
 				startBtnEl.remove();
 				descQEl.remove();
 				//  a- Start the timer
-				scoreEl.innerHTML = currentpoints + " Current Point(s)";
+				scoreEl.innerHTML = " Current Point(s) : " + currentpoints;
 				//  b- Present the 1st question
 				//       List of the options to question 1
 				for (i = 0; i < myQuestions[currentQ].answers.length; i++) {
@@ -101,7 +101,7 @@
 					myQuestions[currentQ].correctAnswer
 				) {
 					currentpoints++;
-					scoreEl.innerHTML = currentpoints + " Current Point(s)";
+					scoreEl.innerHTML = " Current Point(s) : " + currentpoints;
 				}
 
 				currentQ++;
@@ -149,6 +149,7 @@
 				topEl.querySelectorAll("button").forEach((element) => {
 					element.remove();
 				});
+				scoreEl.setAttribute("style", "font-size:25px");
 			}
 		</script>
 	</body>
