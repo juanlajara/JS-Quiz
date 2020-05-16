@@ -79,15 +79,36 @@
 				listOfQEl.appendChild(tempBtnEl);
 
 				// listOfQEl.children[i].addEventListener("click", console.log("next"));
-
+				var allBtnEl = topEl
+					.querySelectorAll("button")
+					[i].addEventListener("click", nextQuestion);
 				// tempBtnEl.onclick = console.log("Next Question"); // Append <li> to <ul> with id="myList"
 			}
-			topEl.querySelectorAll(".btn").addEventListener("click", nextQuestion());
+
 			// Start The Timer
 			timer();
 
 			//          1a-Onclick for the right answer - Next Question()
 			//          1b-Onclick wrong answer - SubtractTime() & Next Question()
+		}
+
+		function nextQuestion() {
+			currentQ++;
+			for (i = 0; i < myQuestions[currentQ].answers.length; i++) {
+				questionEl.innerHTML = myQuestions[currentQ].question;
+				var tempBtnEl = document.createElement("button");
+				var tempBtnTxt = document.createTextNode(
+					myQuestions[currentQ].answers[i]
+				);
+				tempBtnEl.appendChild(tempBtnTxt);
+				// Add Attributes to Button
+				tempBtnEl.setAttribute("value", i);
+				tempBtnEl.setAttribute("class", "mr-2 btn btn-primary");
+				// var textnode = document.createTextNode("Water");
+				var item = document.querySelectorAll("button")[i];
+				// Replace the first child node of <ul> with the newly created text node
+				item.replaceChild(tempBtnTxt, item.childNodes[0]);
+			}
 		}
 		//  d-Quiz Ends when Timer = 0 or All Questions are Answered
 		//  e-present user the option to add Initials with current score
