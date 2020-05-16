@@ -128,10 +128,12 @@
 				}
 
 				currentQ++;
-
+				// If done with the Questions
 				if (myQuestions[currentQ] === undefined) {
 					endQuiz();
-				} else {
+				}
+				// If not next Question
+				else {
 					topEl.querySelectorAll("button").forEach((element) => {
 						element.remove();
 					});
@@ -148,7 +150,6 @@
 							"class",
 							"list-group-item list-group-item-info mb-2 container mt-2 text-center"
 						);
-						// var item = document.querySelectorAll("button")[i];
 
 						listOfAnwrsEl.appendChild(tempBtnEl);
 						var allBtnEl = topEl
@@ -157,7 +158,7 @@
 					}
 				}
 			}
-
+			// Count down Timer
 			function timer() {
 				timeleft = initimerVal;
 				var timer = setInterval(function () {
@@ -169,7 +170,7 @@
 					}
 				}, 1000);
 			}
-
+			// End of the Quiz
 			function endQuiz() {
 				questionEl.remove();
 				pgeTimerEl.remove();
