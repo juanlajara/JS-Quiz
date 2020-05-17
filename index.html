@@ -34,11 +34,14 @@
 		>
 			Start
 		</button>
+
 		<h3 id="Question" class="container pt-1"></h3>
+
 		<div id="listOfAnwrs" class="col"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col">
+					<div class="list-group" id="player-list"></div>
 					<form id="plyrNme-form" method="POST"></form>
 				</div>
 			</div>
@@ -94,6 +97,7 @@
 			var pgeTimerEl = topEl.querySelector("#pgeTimer");
 			var listOfAnwrsEl = topEl.querySelector("#listOfAnwrs");
 			var formEl = topEl.querySelector("#plyrNme-form");
+			var playerListEl = topEl.querySelector("#player-list");
 			// Button Variables
 			var startBtnEl = topEl.querySelector("#startBtn");
 			// #endregion
@@ -213,12 +217,62 @@
 				tempInputEl.setAttribute("id", "plyrNme-text");
 				tempInputEl.setAttribute("class", "form-control text-center");
 				formEl.appendChild(tempInputEl);
+				formEl.addEventListener("submit", function (event) {
+					event.preventDefault();
+					//Capture Player Name
+					var plyrNameVal = topEl.querySelector("#plyrNme-text").value;
+					var plyrNameText = plyrNameVal.trim() + "'s Score: " + currentpoints;
+
+					// Do nothing if playername is blank or score is 0
+					if (plyrNameVal === "") {
+						return;
+					} else {
+						// Add player name to array
+						getHighScores();
+						topScores.push(plyrNameText);
+						plyrNameVal = "";
+						// plyrNameVal.readOnly = true;
+						// Store updated Scores in localStorage, re-render the Scoreboard
+						storeScores();
+						renderScores();
+						formEl.remove();
+						scoreEl.remove();
+					}
+				});
 			}
 
 			function storeScores() {
-				// Stringify and set "todos" key in localStorage to todos array
-				localStorage.setItem("currentScores", JSON.stringify(topScores));
+				// Stringify and set "currentscores" key in localStorage to scores array
+				localStorage.setItem("topScores", JSON.stringify(topScores));
 			}
+
+			function getHighScores() {
+				var storedScores = JSON.parse(localStorage.getItem("topScores"));
+				if (storedScores !== null) {
+					topScores = storedScores;
+				}
+			}
+
+			function renderScores() {
+				// Clear Player List element and update todoCountSpan
+				playerListEl.innerHTML = "";
+
+				// Render a new li for each top Score
+				for (var i = 0; i < topScores.length; i++) {
+					scoretiem = topScores[i];
+
+					var li = document.createElement("a");
+					li.textContent = scoretiem;
+					li.setAttribute("data-index", i);
+					li.setAttribute(
+						"class",
+						"list-group-item list-group-item-action list-group-item-primary"
+					);
+
+					playerListEl.appendChild(li);
+				}
+			}
+
 			//#endregion
 		</script>
 	</body>
