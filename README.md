@@ -47,4 +47,4 @@ SO THAT I can gauge my progress compared to my peers
 
 <h2>🎉 The following demonstrates the application functionality:</h2>
 
-![Demo](https://github.com/juanlajara/PasswordGenerator/blob/master/Assets/images/Dre's%20Password%20Generator.gif)
+![Demo](https://github.com/juanlajara/JS-Quiz/blob/master/Assets/img/JS%20Quiz%20Demo.gif)
