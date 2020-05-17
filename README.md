@@ -45,6 +45,6 @@ SO THAT I can gauge my progress compared to my peers
 - WHEN the game is over
 - THEN I can save my initials and score
 
-<h2>🎉 The following demonstrates the application functionality:</h2>
+<h2>🎉 The following demonstrates the App's functionality:</h2>
 
 ![Demo](https://github.com/juanlajara/JS-Quiz/blob/master/Assets/img/JS%20Quiz%20Demo.gif)
