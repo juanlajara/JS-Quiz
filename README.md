@@ -20,16 +20,20 @@ SO THAT I can gauge my progress compared to my peers
     <li>JavaScript</li>
 </ul>
 <h2>📓 Contributor(s)</h2>
-<p>Dre Lajara</p>
+
+<h3>🔭 Dre Lajara</h3>
+
 <ul>
     <li><a href='https://github.com/juanlajara/juanlajara.github.io' target='_blank'>GitHub</a></li>
     <li><a href='https://www.linkedin.com/in/juan-andres-lajara-179a8442' target='_blank'>LinkedIn</a></li>
     <li>juanlajara001@gmail.com</li>
 </ul>
 <h2>💡 Special Thanks</h2>
-<p>Kevin Holder</p>
-<p>Ashley Lerma</p>
-<p>Jonathan Bently</p>
+<ul>
+    <li>Kevin Holder</li>
+    <li>Ashley Lerma</li>
+    <li>Jonathan Bently</li>
+</ul>
 
 <h2>⚓ Acceptance Criteria</h2>
 
@@ -45,6 +49,6 @@ SO THAT I can gauge my progress compared to my peers
 - WHEN the game is over
 - THEN I can save my initials and score
 
-<h2>🎉 The following demonstrates the App's functionality:</h2>
+<h2>🎉 Demo</h2>
 
 ![Demo](https://github.com/juanlajara/JS-Quiz/blob/master/Assets/img/JS%20Quiz%20Demo.gif)
