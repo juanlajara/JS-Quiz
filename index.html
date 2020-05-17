@@ -214,6 +214,11 @@
 				tempInputEl.setAttribute("class", "form-control text-center");
 				formEl.appendChild(tempInputEl);
 			}
+
+			function storeScores() {
+				// Stringify and set "todos" key in localStorage to todos array
+				localStorage.setItem("currentScores", JSON.stringify(topScores));
+			}
 			//#endregion
 		</script>
 	</body>
